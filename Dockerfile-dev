@@ -1,0 +1,18 @@
+# Используем базовый образ Node.js для установки зависимостей и сборки
+FROM node:20-alpine AS development
+
+# Устанавливаем рабочую директорию для сборки
+WORKDIR /app
+
+# Устанавливаем зависимости
+COPY ./src/package.json ./src/yarn.lock ./
+RUN yarn install --ignore-platform
+
+# Копируем исходный код в контейнер
+COPY ./src ./
+
+# Собираем проект
+RUN yarn build
+
+# Устанавливаем команду запуска приложения
+CMD ["yarn", "dev"]
