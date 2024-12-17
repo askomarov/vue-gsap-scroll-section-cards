@@ -32,6 +32,9 @@ const animateSection = () => {
           const paginationItems = self.selector
             ? self.selector('.anim-container__pagination-item')
             : []
+          paginationItems.forEach((item: HTMLElement) => {
+            item.classList.remove('active')
+          })
           const cards = self.selector ? self.selector('.anim-container__list .big-card') : []
           cards.forEach((card: HTMLElement, index: number) => {
             gsap.from(card, {
@@ -54,7 +57,6 @@ const animateSection = () => {
       }
 
       if (isMobile) {
-        // TODO: мобильная версия вызывает баги при ресайзе окна
         ctx = gsap.context((self) => {
           const cards = self.selector ? self.selector('.big-card') : []
           cards.forEach((card: HTMLElement) => {

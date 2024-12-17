@@ -30,7 +30,7 @@ const props = withDefaults(defineProps<Props>(), {
   max-width: 400px;
   border-radius: 16px;
   background: var(--gradient-back, linear-gradient(180deg, #1c1b1b 0%, rgba(28, 27, 27, 0) 100%));
-  backdrop-filter: blur(16px);
+  position: relative;
 
   &::after {
     user-select: none;
@@ -49,6 +49,10 @@ const props = withDefaults(defineProps<Props>(), {
       linear-gradient(#fff 0 0);
     -webkit-mask-composite: destination-out;
     mask-composite: exclude;
+  }
+
+  @media screen and (min-width: 1024px) {
+    backdrop-filter: blur(16px);
   }
 }
 
